@@ -6,5 +6,5 @@ git+https://github.com/lexpar/solrpy.git
 lxml==4.2.3
 pyquery==1.4.0
 redis==2.10.6
-requests==2.23.0
+requests==2.31.0
 rq==0.12.0
