@@ -12,6 +12,10 @@ Usage:
     uv run ./SCRIPT__manual_transform.py --inscription-path "/path/or/url/to/inscription.xml" --stylesheet-path "/path/or/url/to/stylesheet.xsl"
     ...or...
     uv run ./SCRIPT__manual_transform.py --inscription-path "https://raw.githubusercontent.com/Brown-University-Library/usep-data/refs/heads/master/xml_inscriptions/metadata_only/CA.Berk.UC.HMA.L.8.71.7767.xml" --stylesheet-path "https://raw.githubusercontent.com/Brown-University-Library/usep-data/refs/heads/master/resources/xsl/USEp_to_Solr.xsl"
+
+Notes:
+- either argument can be a path or a URL
+- requires `uv` to be installed: <https://docs.astral.sh/uv/getting-started/installation//>
 """
 
 import argparse
