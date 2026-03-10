@@ -8,6 +8,9 @@
 
 
 """
+Takes an inscription-xml path or URL and an XSL stylesheet path or URL,
+and applies the stylesheet to the inscription XML to produce the transformed output.
+
 Usage:
     uv run ./SCRIPT__manual_transform.py --inscription-path "/path/or/url/to/inscription.xml" --stylesheet-path "/path/or/url/to/stylesheet.xsl"
     ...or...
