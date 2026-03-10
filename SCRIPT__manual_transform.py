@@ -20,7 +20,7 @@ Usage:
 
 Notes:
 - either argument can be a path or a URL
-- requires `uv` to be installed: <https://docs.astral.sh/uv/getting-started/installation//>
+- requires `uv` to be installed: <https://docs.astral.sh/uv/getting-started/installation/>
 """
 
 import argparse
