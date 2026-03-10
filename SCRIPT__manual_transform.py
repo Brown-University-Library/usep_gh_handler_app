@@ -12,6 +12,8 @@ Usage:
     uv run ./SCRIPT__manual_transform.py --inscription-path "/path/or/url/to/inscription.xml" --stylesheet-path "/path/or/url/to/stylesheet.xsl"
     ...or...
     uv run ./SCRIPT__manual_transform.py --inscription-path "https://raw.githubusercontent.com/Brown-University-Library/usep-data/refs/heads/master/xml_inscriptions/metadata_only/CA.Berk.UC.HMA.L.8.71.7767.xml" --stylesheet-path "https://raw.githubusercontent.com/Brown-University-Library/usep-data/refs/heads/master/resources/xsl/USEp_to_Solr.xsl"
+    ...or (never run untrusted code!)...
+    uv run https://gist.github.com/birkin/3c9705da27f2f1d9864b7f1127d9af9b --inscription-path "https://raw.githubusercontent.com/Brown-University-Library/usep-data/refs/heads/master/xml_inscriptions/metadata_only/CA.Berk.UC.HMA.L.8.71.7767.xml" --stylesheet-path "https://raw.githubusercontent.com/Brown-University-Library/usep-data/refs/heads/master/resources/xsl/USEp_to_Solr.xsl"
 
 Notes:
 - either argument can be a path or a URL
@@ -19,6 +21,7 @@ Notes:
 """
 
 import argparse
+import platform
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -127,6 +130,15 @@ def get_httpx_version() -> str:
     return version_text
 
 
+def get_python_version() -> str:
+    """
+    Inspects the runtime Python version.
+    Called by: main()
+    """
+    version_text = platform.python_version()
+    return version_text
+
+
 def main() -> None:
     """
     Parses arguments, runs the transformation, and prints the result.
@@ -136,10 +148,12 @@ def main() -> None:
     args = parser.parse_args()
     inscription_path = args.inscription_path
     stylesheet_path = args.stylesheet_path
+    python_version = get_python_version()
     httpx_version = get_httpx_version()
     lxml_version = get_lxml_version()
     transformed_xml_text = transform_xml(inscription_path, stylesheet_path)
-    print("\n" + f"(using httpx version: ``{httpx_version}``)")
+    print("\n" + f"(using python version: ``{python_version}``)")
+    print(f"(using httpx version: ``{httpx_version}``)")
     print(f"(using lxml version: ``{lxml_version}``)" + "\n")
     print("=" * 35 + " transform-start " + "=" * 35)
     print(transformed_xml_text)
