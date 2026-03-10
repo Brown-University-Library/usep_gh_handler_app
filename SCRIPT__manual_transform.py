@@ -1,7 +1,7 @@
 # /// script
-# requires-python = ">=3.12, <3.13"
+# requires-python = ">=3.8, <3.9"
 # dependencies = [
-# "lxml==4.2.3",
+# "lxml~=6.0.2.0",
 # ]
 # ///
 
@@ -66,6 +66,15 @@ def transform_xml(inscription_path: Path, stylesheet_path: Path) -> str:
     return transformed_xml_text
 
 
+def get_lxml_version() -> str:
+    """
+    Inspects the runtime lxml version.
+    Called by: main()
+    """
+    version_text = ".".join(str(part) for part in etree.LXML_VERSION)
+    return version_text
+
+
 def main() -> None:
     """
     Parses arguments, runs the transformation, and prints the result.
@@ -75,8 +84,12 @@ def main() -> None:
     args = parser.parse_args()
     inscription_path = Path(args.inscription_path)
     stylesheet_path = Path(args.stylesheet_path)
+    lxml_version = get_lxml_version()
     transformed_xml_text = transform_xml(inscription_path, stylesheet_path)
+    print("\n" + f"(using lxml version: ``{lxml_version}``)" + "\n")
+    print("=" * 35 + " transform-start " + "=" * 35)
     print(transformed_xml_text)
+    print("=" * 35 + " transform-end " + "=" * 35 + "\n")
 
 
 if __name__ == "__main__":
