@@ -5,6 +5,12 @@
 # ]
 # ///
 
+
+"""
+Usage:
+    uv run ./SCRIPT__manual_transform.py --inscription-path "/path/to/inscription.xml" --stylesheet-path "/path/to/stylesheet.xsl"
+"""
+
 import argparse
 from pathlib import Path
 
